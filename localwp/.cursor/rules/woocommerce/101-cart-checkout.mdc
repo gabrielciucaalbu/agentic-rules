@@ -1,0 +1,35 @@
+---
+description: Cart and checkout customization patterns
+globs: ["wp-content/{themes,plugins}/**/*{cart,checkout}*.php", "wp-content/themes/*/woocommerce/{cart,checkout}*.php"]
+alwaysApply: false
+---
+
+# Cart and Checkout
+
+## Cart Operations
+- Access cart: `WC()->cart`
+- Add to cart: `WC()->cart->add_to_cart($product_id, $quantity)`
+- Get cart contents: `WC()->cart->get_cart()`
+- Get totals: `WC()->cart->get_cart_total()`, `get_cart_subtotal()`
+- Empty cart: `WC()->cart->empty_cart()`
+
+## Custom Checkout Fields
+Add fields with `woocommerce_checkout_fields` filter:
+```php
+// Add field to $fields['billing'] or $fields['shipping'] or $fields['order']
+// Validate with woocommerce_checkout_process hook
+// Save with woocommerce_checkout_update_order_meta hook
+// Display in admin with woocommerce_admin_order_data_after_billing_address hook
+```
+
+## Field Validation
+- Use `wc_add_notice(__('Error message'), 'error')` for validation errors
+- Check required fields, validate email format, phone numbers, etc.
+- Sanitize all field data: `sanitize_text_field($_POST['field_name'])`
+- Provide clear, actionable error messages
+
+## Best Practices
+- Never break the checkout flow
+- Test guest checkout and registered user checkout
+- Ensure mobile compatibility
+- Keep checkout fields minimal (ask only what's necessary)

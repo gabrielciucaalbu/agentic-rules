@@ -1,0 +1,25 @@
+---
+description: WordPress template hierarchy and best practices
+globs: ["wp-content/themes/**/*.php"]
+alwaysApply: true
+---
+
+# Template Hierarchy
+
+## Follow WordPress Template Order
+- Use specific templates before general: `single-{post-type}.php` → `single.php` → `index.php`
+- Break templates into reusable parts with `get_template_part('template-parts/content', 'post')`
+- Use conditional tags: `is_home()`, `is_single()`, `is_page()`, etc.
+
+## Required Template Functions
+- Include `wp_head()` before `</head>`
+- Include `wp_footer()` before `</body>`
+- Include `wp_body_open()` after `<body>`
+- Use `body_class()` in body tag: `<body <?php body_class(); ?>>`
+- Use `post_class()` in article/post wrappers
+
+## Template Tags
+- Use proper template tags: `the_title()`, `the_content()`, `the_permalink()`
+- Always call `wp_reset_postdata()` after custom `WP_Query` loops
+- Use `get_template_directory_uri()` for theme URLs (never hardcode)
+- Use `home_url()` for site URLs (never hardcode domain)

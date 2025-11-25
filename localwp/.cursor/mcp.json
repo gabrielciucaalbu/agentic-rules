@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "wordpress-local": {
+      "command": "wp",
+      "args": [
+        "ai",
+        "--mcp-mode"
+      ],
+      "env": {
+        "PATH": "/Users/gabrielciucaalbu/Library/Application Support/Local/lightning-services/php-8.2.27+1/bin/darwin-arm64/bin:/Applications/Local.app/Contents/Resources/extraResources/bin/wp-cli/posix:/usr/local/bin:/usr/bin:/bin"
+      }
+    }
+  }
+}

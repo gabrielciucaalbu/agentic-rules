@@ -1,0 +1,15 @@
+---
+description: Core WordPress plugin development principles
+globs: ["wp-content/plugins/**/*.php"]
+alwaysApply: true
+---
+
+# Core Plugin Principles
+
+- **Single Responsibility**: Each plugin should have one clear, focused purpose
+- **WordPress APIs First**: Use built-in WordPress APIs (Settings, Options, Transients, HTTP) over custom solutions
+- **Hooks Over Modifications**: Never modify WordPress core files - always use hooks and filters
+- **Namespace Everything**: Use unique prefixes/namespaces to avoid conflicts with other plugins
+- **Conditional Loading**: Load code only when needed (admin vs frontend, specific pages)
+- **Check Dependencies**: Verify required plugins/PHP/WordPress versions before executing
+- **Performance**: Minimize impact on site speed through efficient code and caching

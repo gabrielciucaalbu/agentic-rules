@@ -1,0 +1,27 @@
+---
+description: Plugin activation, deactivation, and uninstall patterns
+globs: ["wp-content/plugins/*/*.php", "wp-content/plugins/*/uninstall.php"]
+alwaysApply: false
+---
+
+# Plugin Lifecycle
+
+## Activation Hook
+Use `register_activation_hook()` to:
+- Create database tables with `dbDelta()` (use `$wpdb->get_charset_collate()`)
+- Set default options with `add_option()`
+- Flush rewrite rules if adding custom post types/taxonomies
+- Check PHP/WordPress version requirements and deactivate if not met
+
+## Deactivation Hook
+Use `register_deactivation_hook()` to:
+- Clear scheduled events with `wp_clear_scheduled_hook()`
+- Flush rewrite rules if you added custom rewrites
+- **DO NOT delete user data or options** (users may reactivate)
+
+## Uninstall
+Use `uninstall.php` (not deactivation) to:
+- Check `defined('WP_UNINSTALL_PLUGIN')` before executing
+- Delete options with `delete_option()`
+- Drop custom tables with `$wpdb->query("DROP TABLE IF EXISTS...")`
+- Delete post meta, user meta, transients created by plugin

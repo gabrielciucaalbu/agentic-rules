@@ -1,0 +1,16 @@
+---
+description: Core WordPress theme development principles
+globs: ["wp-content/themes/**/*.php"]
+alwaysApply: true
+---
+
+# Core Theme Principles
+
+- **WordPress Coding Standards**: Follow WordPress PHP, CSS, JavaScript, and HTML coding standards
+- **Template Hierarchy**: Use proper WordPress template hierarchy (specific to general)
+- **Security First**: Always sanitize input, escape output, use nonces for forms
+- **Performance**: Optimize assets (enqueue properly, minify, use caching)
+- **Accessibility**: Follow WCAG guidelines - semantic HTML, ARIA labels, keyboard navigation
+- **Responsive Design**: Mobile-first approach, test all breakpoints
+- **No Business Logic**: Themes are for presentation only - complex logic belongs in plugins
+- **Child Theme Compatible**: Build themes that can be safely extended with child themes

@@ -1,0 +1,40 @@
+---
+description: Self-improvement and collaboration rules
+alwaysApply: true
+---
+
+# Self-improvement and collaboration rules
+
+PR hygiene
+
+- Keep PRs small, focused, and well-described
+- Include before/after snippets for non-trivial refactors
+- Link related Tasks/bugs; mention breaking changes explicitly
+
+Commit message conventions
+
+- Use conventional commit prefixes: `feat(svc)`, `fix(svc)`, or `chore(svc)`
+- Format: `<type>(<scope>): <description>` followed by optional Task reference
+- The `(svc)` scope indicates backend service changes
+- Examples:
+  - `feat(svc): add deliverable approval endpoint (Task 123456)`
+  - `fix(svc): correct authorization check in UpdateRevTUseCase`
+  - `chore(svc): update Cursor rules documentation`
+- Keep descriptions concise and in imperative mood ("add" not "added" or "adds")
+- For breaking changes, add `!` after scope: `feat(svc)!: change command structure`
+
+Cursor usage
+
+- Always load `.cursor/rules/*` when generating changes
+- Ask for conflicts if rules and code diverge; prefer repo patterns
+- Propose incremental edits; avoid wide, unrelated formatting diffs
+
+Feedback loop
+
+- If a rule causes friction, propose a change in a dedicated PR with rationale
+- Prefer measurable improvements (build time, test coverage, defect rate)
+
+Documentation
+
+- Add/adjust XML docs and README excerpts when introducing new patterns
+- Keep examples minimal and representative of the codebase

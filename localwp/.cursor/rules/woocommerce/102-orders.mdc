@@ -1,0 +1,34 @@
+---
+description: Order operations and customer data
+globs: ["wp-content/{themes,plugins}/**/*order*.php"]
+alwaysApply: false
+---
+
+# Order Operations
+
+## Get Orders
+- Use `wc_get_order($order_id)` to get order object
+- Always verify order exists: `if ($order && is_a($order, 'WC_Order'))`
+- Check order ownership: verify current user owns order before displaying
+
+## Order Methods
+- `$order->get_id()` - Order ID
+- `$order->get_total()` - Total amount
+- `$order->get_status()` - Order status (without 'wc-' prefix)
+- `$order->get_items()` - Order line items
+- `$order->get_billing_email()` / `get_billing_first_name()` etc. - Billing data
+- `$order->get_shipping_address_1()` etc. - Shipping data
+
+## Order Management
+- Update status: `$order->update_status('completed', 'Order completed note')`
+- Add order note: `$order->add_order_note('Note text', $is_customer_note)`
+- Send emails: `$order->update_status()` triggers emails automatically
+
+## Customer Data
+- Get current customer: `WC()->customer`
+- Access billing/shipping data from customer object
+- **GDPR**: Respect privacy settings, allow data export/deletion
+- Never expose customer data to unauthorized users
+
+## Order Queries
+Use `wc_get_orders()` with args array for filtering, pagination

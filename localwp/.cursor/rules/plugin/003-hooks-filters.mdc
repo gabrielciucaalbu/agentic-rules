@@ -1,0 +1,24 @@
+---
+description: WordPress hooks and filters best practices
+globs: ["wp-content/plugins/**/*.php"]
+alwaysApply: true
+---
+
+# Hooks and Filters
+
+## Using Hooks
+- Use `add_action()` for actions, `add_filter()` for filters
+- Specify appropriate priority (default 10) and accepted arguments
+- Use descriptive callback names prefixed with plugin namespace
+- Remove hooks when needed with `remove_action()` / `remove_filter()`
+
+## Creating Custom Hooks
+- Create extensibility with `do_action()` and `apply_filters()`
+- Name hooks with plugin prefix: `my_plugin_before_save`
+- Document all custom hooks for other developers
+- Pass relevant data as parameters
+
+## Best Practices
+- Keep callback functions focused and small
+- Check if hook/function exists before using
+- Use proper hook timing (init, wp_loaded, admin_init, etc.)

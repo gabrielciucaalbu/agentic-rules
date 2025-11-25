@@ -1,0 +1,44 @@
+---
+description: Custom payment gateways and webhooks
+globs: ["wp-content/{themes,plugins}/**/*{payment,gateway,webhook}*.php"]
+alwaysApply: false
+---
+
+# Payment Gateways
+
+## Custom Gateway Setup
+- Extend `WC_Payment_Gateway` class
+- Implement `__construct()` to set id, title, description, etc.
+- Use `init_form_fields()` for gateway settings
+- Implement `process_payment($order_id)` - **must return array** with 'result' and 'redirect'
+
+## Process Payment Method
+```php
+public function process_payment($order_id) {
+    $order = wc_get_order($order_id);
+    // Process payment with payment provider
+    // On success:
+    $order->payment_complete($transaction_id);
+    return array('result' => 'success', 'redirect' => $this->get_return_url($order));
+}
+```
+
+## Security
+- **Never log full payment details** (card numbers, CVV)
+- Use test mode for development
+- Verify webhook signatures from payment providers
+- Use nonces for any form submissions
+- Validate and sanitize all input
+
+## Webhooks/IPN
+- Verify webhook source (check signature/IP)
+- Process asynchronously if possible
+- Add order notes for tracking
+- Update order status appropriately
+- Handle idempotency (same webhook received multiple times)
+- Log webhook activity for debugging (sanitize sensitive data)
+
+## Order Status Updates
+- Use appropriate statuses: 'processing', 'completed', 'failed', 'on-hold'
+- Add descriptive order notes
+- Trigger email notifications with status changes

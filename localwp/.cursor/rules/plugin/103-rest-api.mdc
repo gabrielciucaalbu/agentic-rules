@@ -1,0 +1,29 @@
+---
+description: REST API endpoint patterns and security
+globs: ["wp-content/plugins/**/*{rest,api}*.php", "wp-content/plugins/**/api/**/*.php"]
+alwaysApply: false
+---
+
+# REST API Endpoints
+
+## Register Endpoints
+Use `register_rest_route()` in `rest_api_init` hook:
+- Namespace: `my-plugin/v1`
+- Route: `/endpoint-name`
+- Specify methods: `WP_REST_Server::READABLE` (GET), `CREATABLE` (POST), etc.
+
+## Security (Required)
+- **Always** provide `permission_callback` (never use `__return_true` in production)
+- Check capabilities: `current_user_can('edit_posts')`
+- Verify nonces if needed: `wp_verify_nonce()`
+
+## Validation
+- Define `args` with validation/sanitization callbacks
+- Use `validate_callback` to check input before processing
+- Use `sanitize_callback` to clean data
+- Return `WP_Error` for validation failures
+
+## Response
+- Return appropriate HTTP status codes (200, 201, 400, 401, 404, etc.)
+- Use `WP_REST_Response` for complex responses
+- Return `WP_Error` for error conditions

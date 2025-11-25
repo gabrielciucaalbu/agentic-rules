@@ -1,0 +1,24 @@
+---
+description: AJAX handling patterns and security
+globs: ["wp-content/plugins/**/*ajax*.php", "wp-content/plugins/**/ajax/**/*.php"]
+alwaysApply: false
+---
+
+# AJAX Handling
+
+## Register AJAX Actions
+- Use `wp_ajax_{action}` hook for logged-in users
+- Use `wp_ajax_nopriv_{action}` hook for logged-out users
+- Action name should be prefixed with plugin namespace
+
+## Security
+- Verify nonces with `check_ajax_referer('my_nonce_action')`
+- Check user capabilities with `current_user_can()`
+- Sanitize all input data
+- Validate data types and expected values
+
+## Response
+- Return JSON with `wp_send_json_success($data)` or `wp_send_json_error($data)`
+- Always terminate with `wp_die()` if not using wp_send_json_*
+- Provide meaningful error messages for debugging
+- Handle errors gracefully with try-catch when appropriate

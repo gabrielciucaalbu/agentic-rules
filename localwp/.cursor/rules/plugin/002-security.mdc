@@ -1,0 +1,25 @@
+---
+description: Security requirements - sanitize, escape, nonces, capabilities
+globs: ["wp-content/plugins/**/*.php"]
+alwaysApply: true
+---
+
+# Plugin Security Requirements
+
+## Always Sanitize Input
+- Use `sanitize_text_field()`, `sanitize_email()`, `sanitize_textarea_field()`
+- Never trust `$_GET`, `$_POST`, `$_REQUEST` directly
+- Validate data types and expected values
+
+## Always Escape Output
+- Use `esc_html()`, `esc_url()`, `esc_attr()`, `esc_js()`
+- Escape data as late as possible (at output time)
+
+## Verify Requests
+- Use `wp_nonce_field()` and `wp_verify_nonce()` for all forms
+- Check capabilities with `current_user_can()` before any privileged operations
+- Verify AJAX requests with `check_ajax_referer()`
+
+## Database Security
+- Always use `$wpdb->prepare()` for queries with variables
+- Never concatenate variables directly into SQL queries

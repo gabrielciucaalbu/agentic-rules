@@ -1,0 +1,24 @@
+---
+description: Theme security requirements
+globs: ["wp-content/themes/**/*.php"]
+alwaysApply: true
+---
+
+# Theme Security
+
+## Always Escape Output
+- `esc_html()` for HTML content
+- `esc_url()` for URLs
+- `esc_attr()` for HTML attributes
+- `esc_js()` for inline JavaScript
+- Use `_e()` and `esc_html_e()` for translated strings
+
+## Sanitize Input
+- Use `sanitize_text_field()`, `sanitize_textarea_field()` for text
+- Never trust user input from forms or query parameters
+- Validate data types and expected values
+
+## Verify Requests
+- Use `wp_nonce_field()` and `wp_verify_nonce()` for form submissions
+- Check capabilities with `current_user_can()` for privileged operations
+- Never expose sensitive information in theme code

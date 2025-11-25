@@ -1,0 +1,31 @@
+---
+description: Template file patterns and requirements
+globs: ["wp-content/themes/**/{single,page,archive,index,header,footer}*.php", "wp-content/themes/**/template-parts/**/*.php"]
+alwaysApply: false
+---
+
+# Template Files
+
+## Required Files
+- `style.css` with proper theme header (Theme Name, Version, etc.)
+- `index.php` as fallback template
+- `functions.php` for theme setup
+
+## Template Structure
+- Use The Loop properly for displaying posts
+- Check if posts exist: `if (have_posts()) : while (have_posts()) : the_post();`
+- Use `get_header()`, `get_footer()`, `get_sidebar()` for template parts
+- Use `get_template_part()` for reusable components
+
+## Best Practices
+- Never hardcode URLs - use `home_url()`, `get_template_directory_uri()`
+- Don't include jQuery from CDN - use WordPress bundled version
+- Make all strings translatable with `__()`, `_e()`, `esc_html__()`
+- Don't use inline styles or scripts - enqueue them properly
+- Provide fallback content when no posts exist
+- Use WordPress template tags over raw PHP when available
+
+## Child Themes
+- Child themes need only `style.css` with `Template:` header pointing to parent
+- Enqueue parent styles in child functions.php
+- Override only necessary templates from parent theme

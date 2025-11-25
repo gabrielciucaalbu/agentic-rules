@@ -1,0 +1,25 @@
+---
+description: WooCommerce security requirements
+globs: ["wp-content/{themes,plugins}/**/*.php"]
+alwaysApply: true
+---
+
+# WooCommerce Security
+
+## Critical Security Rules
+- **Never Expose Payment Data**: Never log, store, or display full credit card information
+- **Check WooCommerce Active**: Verify `class_exists('WooCommerce')` before using WC functions
+- **Verify Nonces**: Use nonces for all forms, especially checkout customizations
+- **Check Capabilities**: Verify `current_user_can()` for admin operations
+- **Validate Order Data**: Always verify order ownership before displaying order details
+
+## Data Handling
+- **Sanitize All Input**: Use `sanitize_text_field()`, `sanitize_email()` for form data
+- **Escape All Output**: Use `esc_html()`, `esc_url()`, `esc_attr()` everywhere
+- **Validate Data Types**: Ensure prices are floats, quantities are integers, etc.
+- **GDPR Compliance**: Respect privacy settings, allow data export/deletion
+
+## Database
+- Use WooCommerce data stores and CRUD objects (avoid direct queries)
+- Use `$wpdb->prepare()` if direct queries are absolutely necessary
+- Never trust user input in queries

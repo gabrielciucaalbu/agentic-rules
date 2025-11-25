@@ -1,0 +1,33 @@
+---
+description: Product operations and queries
+globs: ["wp-content/{themes,plugins}/**/*product*.php"]
+alwaysApply: false
+---
+
+# Product Operations
+
+## Get Products
+- Use `wc_get_product($id)` to get product object (never instantiate directly)
+- Always check if product exists: `if ($product && is_a($product, 'WC_Product'))`
+- Use `WC_Product_Query` for multiple products with filters
+
+## Product Methods
+- `$product->get_name()` - Product name
+- `$product->get_price()` / `get_regular_price()` / `get_sale_price()` - Pricing
+- `$product->get_stock_status()` / `is_in_stock()` - Stock status
+- `$product->get_stock_quantity()` - Quantity available
+- `$product->is_type('simple')` / `is_type('variable')` - Check product type
+
+## Variable Products
+- Check if variable: `$product->is_type('variable')`
+- Get variations: `$product->get_available_variations()`
+- Get variation object: `wc_get_product($variation_id)` (variations are products too)
+
+## Stock Management
+- Check stock: `$product->is_in_stock()`
+- Update stock: `wc_update_product_stock($product, $quantity, 'increase')` or `'decrease'`
+- Handle backorders according to product settings
+
+## Display Prices
+- Format prices: `wc_price($amount)` - applies currency symbol and formatting
+- Get price HTML: `$product->get_price_html()` - formatted with sale markup

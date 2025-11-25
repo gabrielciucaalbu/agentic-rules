@@ -1,0 +1,31 @@
+---
+description: Block theme and theme.json patterns
+globs: ["wp-content/themes/*/theme.json", "wp-content/themes/*/templates/**/*.{php,html}", "wp-content/themes/*/parts/**/*.html"]
+alwaysApply: false
+---
+
+# Block Themes
+
+## Theme.json
+- Define global styles and settings in `theme.json`
+- Configure color palettes, typography, layout settings
+- Set block-specific styles and settings
+- Use semantic design tokens for consistency
+
+## Template Structure
+- Place block templates in `templates/` directory (HTML files)
+- Place template parts in `parts/` directory (header.html, footer.html)
+- Use block markup syntax with HTML comments
+
+## Custom Post Types
+- Set `show_in_rest => true` to enable Gutenberg editor
+- Define block templates with `template` and `template_lock` parameters
+
+## Patterns
+- Create block patterns in `patterns/` directory
+- Register with proper pattern header
+
+## Compatibility
+- Test with both classic and block editor
+- Provide backwards compatibility for classic templates if needed
+- Ensure theme works with Full Site Editing (FSE)

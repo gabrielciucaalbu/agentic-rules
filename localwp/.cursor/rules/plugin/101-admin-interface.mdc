@@ -1,0 +1,26 @@
+---
+description: Admin interface and Settings API patterns
+globs: ["wp-content/plugins/**/admin/**/*.php", "wp-content/plugins/**/*admin*.php"]
+alwaysApply: false
+---
+
+# Admin Interface
+
+## Menu Pages
+- Use `add_menu_page()` for top-level menus
+- Use `add_submenu_page()` for submenus
+- Always check `current_user_can('manage_options')` or appropriate capability
+- Use WordPress admin UI components (wp-admin styles)
+
+## Settings API
+Use WordPress Settings API for all settings:
+- `register_setting()` with sanitization callback
+- `add_settings_section()` to group related fields
+- `add_settings_field()` for each field
+- Use `settings_errors()` to display feedback messages
+
+## Asset Loading
+- Enqueue admin scripts/styles only on plugin pages
+- Use `admin_enqueue_scripts` hook with page detection
+- Check `$hook` parameter to load only where needed
+- Use `wp_localize_script()` for passing data to JavaScript

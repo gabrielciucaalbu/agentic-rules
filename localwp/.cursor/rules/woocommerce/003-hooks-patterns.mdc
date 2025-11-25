@@ -1,0 +1,32 @@
+---
+description: Essential WooCommerce hooks and filter patterns
+globs: ["wp-content/{themes,plugins}/**/*.php"]
+alwaysApply: true
+---
+
+# WooCommerce Hooks
+
+## Product Page Hooks
+- `woocommerce_before_single_product` - Before product content
+- `woocommerce_single_product_summary` - Modify product summary (priority matters: 5=title, 10=price, 20=excerpt)
+- `woocommerce_after_single_product_summary` - After summary (tabs, related products)
+- `woocommerce_product_tabs` - Filter to add/remove/modify tabs
+
+## Shop/Archive Hooks
+- `woocommerce_before_shop_loop` - Before product grid
+- `woocommerce_after_shop_loop` - After product grid
+- `loop_shop_per_page` - Filter to change products per page
+- `loop_shop_columns` - Filter to change grid columns
+
+## Cart Hooks
+- `woocommerce_before_cart` - Before cart table
+- `woocommerce_add_to_cart_validation` - Validate before adding to cart
+- `woocommerce_cart_item_price` - Filter individual cart item price display
+
+## Checkout Hooks
+- `woocommerce_checkout_fields` - Modify checkout form fields
+- `woocommerce_checkout_process` - Validate checkout fields
+- `woocommerce_checkout_update_order_meta` - Save custom field data to order
+- `woocommerce_thankyou` - Order received page
+
+**Priority Matters**: Always check existing hook priorities to place your actions in the right order

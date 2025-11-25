@@ -1,0 +1,34 @@
+---
+description: Theme functions.php setup and configuration
+globs: ["wp-content/themes/*/functions.php"]
+alwaysApply: false
+---
+
+# Theme Functions Setup
+
+## Required Theme Support
+```php
+add_theme_support('title-tag');
+add_theme_support('post-thumbnails');
+add_theme_support('html5', array('search-form', 'comment-form', 'comment-list', 'gallery', 'caption'));
+add_theme_support('automatic-feed-links');
+```
+
+## Register Navigation Menus
+- Use `register_nav_menus()` to register menu locations
+- Display with `wp_nav_menu()` in templates
+
+## Register Widget Areas
+- Use `register_sidebar()` for widget areas
+- Display with `dynamic_sidebar('sidebar-name')` in templates
+
+## Enqueue Assets
+- Use `wp_enqueue_script()` and `wp_enqueue_style()` (never hardcode in templates)
+- Hook into `wp_enqueue_scripts` action
+- Version assets with theme version: `wp_get_theme()->get('Version')`
+- Load scripts in footer when possible: 5th parameter `true`
+- Use `wp_localize_script()` to pass data to JavaScript
+
+## Other Setup
+- `add_image_size()` for custom image sizes
+- `load_theme_textdomain()` for translations

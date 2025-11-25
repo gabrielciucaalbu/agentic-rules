@@ -1,0 +1,16 @@
+---
+description: Core WooCommerce development principles
+globs: ["wp-content/{themes,plugins}/**/*.php"]
+alwaysApply: true
+---
+
+# Core WooCommerce Principles
+
+- **Never Modify Core**: Never edit WooCommerce plugin files - always use hooks and filters
+- **Template Overrides**: Copy templates to `theme/woocommerce/` for customization (maintain structure)
+- **Check if Active**: Always verify WooCommerce is active: `class_exists('WooCommerce')`
+- **Compatibility**: Test with WooCommerce updates - use version checks if needed
+- **Complete Testing**: Always test full purchase flow after any changes
+- **Mobile First**: Ensure checkout and product pages work perfectly on mobile
+- **Use WC Functions**: Use WooCommerce functions (`wc_get_product()`) over direct queries
+- **Respect Settings**: Honor WooCommerce settings (tax, currency, stock management)
