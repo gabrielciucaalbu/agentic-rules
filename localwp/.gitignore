@@ -1,0 +1,68 @@
+# WordPress Core Files
+# /app/public/wp-admin/
+# /app/public/wp-includes/
+# /app/public/*.php
+# !/app/public/wp-config.php
+# /app/public/readme.html
+# /app/public/license.txt
+# /app/public/xmlrpc.php
+# /app/public/wp-config-sample.php
+
+# # WordPress Content - Uploads
+# /app/public/wp-content/uploads/
+# /app/public/wp-content/upgrade/
+# /app/public/wp-content/upgrade-temp-backup/
+
+# # WordPress Content - Exclude Everything in wp-content except themes and plugins
+# /app/public/wp-content/*
+# !/app/public/wp-content/themes/
+# !/app/public/wp-content/plugins/
+# !/app/public/wp-content/mu-plugins/
+
+# # WordPress Content - Exclude Third-Party Themes
+# /app/public/wp-content/themes/*
+# !/app/public/wp-content/themes/frost/
+
+# Local WP Configuration Files
+/conf/
+/logs/
+local-site.json
+
+# Database Dumps
+/app/sql/
+*.sql
+
+# Backups
+/backups/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Environment Variables
+# .env
+# .env.local
+# .env.*.local
+
+# OS Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary Files
+*.log
+*.tmp
+*.temp
+.cache/
+
